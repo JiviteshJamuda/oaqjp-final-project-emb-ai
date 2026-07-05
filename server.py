@@ -19,7 +19,14 @@ def sent_detector():
     sadness = response["sadness"]
     dominant = response["dominant_emotion"]
 
-    res = f"For the given statement, the system response is 'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}. The dominant emotion is <b>{dominant}</b>."
+    # if the text given was empty and None was returned
+    if dominant is None:
+        return "Invalid text! Please try again!."
+
+    # Output
+    res = f"For the given statement, the system response is 'anger': {anger}, "
+    res += f"'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}. "
+    res += f"The dominant emotion is <b>{dominant}</b>."
     return res
 
 @app.route("/")
